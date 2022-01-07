@@ -1,16 +1,28 @@
-﻿CREATE TABLE products (
+﻿DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS productId_categoryId;
+
+
+CREATE TABLE products (
 	ProductId int,
 	ProductName varchar(255),
+
+	CONSTRAINT ProductPK PRIMARY KEY (ProductId)
 );
 
 CREATE TABLE categories (
 	CategoryId int,
 	CategoryName varchar(255),
+	
+	CONSTRAINT CategoryPK PRIMARY KEY (CategoryId)
 );
 
 CREATE TABLE productId_categoryId (
 	ProductId int,
 	CategoryId int,
+
+	CONSTRAINT fk_product FOREIGN KEY (ProductId) REFERENCES products(ProductId),
+	CONSTRAINT fk_category FOREIGN KEY (CategoryId) REFERENCES categories(CategoryId)
 );
 
 INSERT INTO products VALUES (1, 'apples');
